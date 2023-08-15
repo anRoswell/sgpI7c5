@@ -4,14 +4,13 @@
 
 export const environment = {
   production: false,
-  urlServer: 'https://capinetservi.syspotec.co/api/',
   databaseNames: [
     { name: 'mobilidadLogin' },
     { name: 'mobilidadCargaInicial' },
   ],
+  urlServer: 'http://localhost:3000/api/v1.1/',
+  urlImg: 'http://localhost:3000/',
 };
-export const ApiRest =
-  'https://lecturaacueductonodejs.syspotec.co:8188/api/v1.0/'; //Produccion
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -16,7 +16,7 @@
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
-@import '@ionic/angular/css/display.css';
+@import "@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
@@ -24,3 +24,89 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.classAlertContrato {
+  .alert-head {
+    background-color: #e8f6fd;
+    margin-bottom: 10px;
+
+    background-image: url("./assets/img/logo_electropro.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    text-align: center;
+  }
+
+  .alert-button {
+    background-color: green;
+    font-weight: bold;
+    color: white;
+    border-radius: 8px;
+  }
+
+  img {
+    opacity: 0.5;
+  }
+}
+
+.cssAlertConfirm .alert-wrapper {
+  background: #f0eded;
+}
+
+.cssAlertConfirm .alert-button {
+  background: #eb190a;
+  color: #ffffff;
+  border-radius: 7px;
+}
+
+.cssAlertConfirm .alert-button-role-cancel {
+  background: #23b44f;
+  color: #ffffff;
+  border-radius: 7px;
+}
+
+.cssAlertConfirmGreen .alert-button {
+  background: #00ff4c;
+  color: #ffffff;
+  border-radius: 7px;
+}
+
+ion-content {
+  --background: #e8f6fd !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #13558b;
+}
+
+.btnYellow {
+  background: transparent linear-gradient(180deg, #ecba2a 0%, #cc9e1d 100%) 0%
+    0% no-repeat padding-box;
+  box-shadow: 0px 15px 20px #00000026;
+  border-radius: 15px;
+  opacity: 1;
+  strong {
+    color: var(--unnamed-color-ffffff);
+    text-align: left;
+    letter-spacing: 0.8px;
+    color: #ffffff;
+    opacity: 1;
+    font-weight: bold;
+  }
+}
+
+a {
+  color: #cc9e1d !important;
+  text-decoration: none;
+}
+
+.validationError {
+  padding-top: 15px;
+  padding-left: 10px;
+  color: red;
+}

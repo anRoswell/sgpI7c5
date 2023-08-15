@@ -8,9 +8,10 @@ import { LoginRoutingModule } from './login-routing.module';
 // Pages
 import { NovedadesComponent } from './novedades/novedades.component';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginComponent, NovedadesComponent],
-  imports: [CommonModule, LoginRoutingModule, IonicModule],
+  imports: [CommonModule, LoginRoutingModule, IonicModule, ReactiveFormsModule],
 })
 export class LoginModule {}
