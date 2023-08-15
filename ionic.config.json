@@ -1,0 +1,7 @@
+{
+  "name": "plantillaIonicV7",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

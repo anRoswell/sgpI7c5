@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Log In</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form>
+    <ion-item lines="full">
+      <ion-input type="text" labelPlacement="stacked" label="Email" fill="solid" helperText="Enter a valid email"
+        errorText="Email invalido" email required></ion-input>
+    </ion-item>
+    <br />
+    <ion-item lines="full">
+      <ion-input type="password" labelPlacement="stacked" label="Password" fill="solid" helperText="Password"
+        errorText="Invalid password" [clearInput]="true" required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="button" (click)="login()" color="primary" expand="block">Sign In</ion-button>
+        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
