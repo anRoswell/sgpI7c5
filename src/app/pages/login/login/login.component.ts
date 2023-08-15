@@ -10,7 +10,7 @@ import { ILogger } from 'src/app/interfaces/ILogger';
 import { IStorage } from 'src/app/interfaces/IStorage';
 
 // Services
-import { AuthenticateService } from 'src/app/services/authenticate.service';
+
 import { CheckconnectionService } from 'src/app/services/checkconnection.service';
 
 // Entorno
@@ -54,7 +54,6 @@ export class LoginComponent {
     @Inject('IAuthenticate') public authenticateService: IAuthenticate,
     @Inject('IStorage') public storageService: IStorage,
     private router: Router,
-    private authService: AuthenticateService,
     private fb: FormBuilder,
     private checkconnectionService: CheckconnectionService,
     private menu: MenuController
@@ -77,7 +76,7 @@ export class LoginComponent {
   async loginUser(credentials: any) {
     this.checkconnectionService.checkConection().then(async (_) => {
       await this.checkconnectionService.presentLoading();
-      this.authService.login$(credentials).subscribe((result) => {
+      this.authenticateService.login$(credentials).subscribe((result) => {
         const { id } = result;
         this.storageService.setData('isUserLoggedIn', true);
         this.storageService.setData('userLogin', result);

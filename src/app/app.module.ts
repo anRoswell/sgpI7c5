@@ -31,6 +31,7 @@ import { AuthenticateService } from './services/authenticate.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { HttpService } from './services/http.service';
 import { StorageService } from './services/storage.service';
+import { BackButtonService } from './services/back-button.service';
 
 // Components
 
@@ -68,6 +69,10 @@ import { StorageService } from './services/storage.service';
     {
       provide: 'IStorage',
       useClass: StorageService,
+    },
+    {
+      provide: 'IBackButton',
+      useClass: BackButtonService,
     },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },

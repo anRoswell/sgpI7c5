@@ -1,8 +1,30 @@
 <ion-menu side="start" contentId="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu Content</ion-title>
+      <ion-title>SGP</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">This is the menu content.</ion-content>
+  <ion-content class="ion-padding">
+    <ion-list id="inbox-list">
+      <ion-list-header>
+        <div id="divCabecera">
+          <img [src]="image" />
+          <p>Alfonso Navarro</p>
+        </div>
+      </ion-list-header>
+
+      <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+        <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+          [class.selected]="selectedIndex === i">
+          <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+          <ion-label><strong>{{ p.title }}</strong></ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-item lines="none" detail="false" (click)="logout()">
+        <ion-icon slot="start" name="close-circle" size="large"></ion-icon>
+        <ion-label><strong>SALIR</strong></ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-menu>
