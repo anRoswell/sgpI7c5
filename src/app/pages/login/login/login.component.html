@@ -1,27 +1,58 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Log In</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  <form>
-    <ion-item lines="full">
-      <ion-input type="text" labelPlacement="stacked" label="Email" fill="solid" helperText="Enter a valid email"
-        errorText="Email invalido" email required></ion-input>
-    </ion-item>
-    <br />
-    <ion-item lines="full">
-      <ion-input type="password" labelPlacement="stacked" label="Password" fill="solid" helperText="Password"
-        errorText="Invalid password" [clearInput]="true" required></ion-input>
-    </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-button type="button" (click)="login()" color="primary" expand="block">Sign In</ion-button>
-        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
-      </ion-col>
-    </ion-row>
+<ion-content class="ion-padding">
+  <div id="imgTitle" class="ion-text-center ion-padding-top">
+    <img src="assets/img/logo_electropro.png" />
+    <h1>ACCEDER</h1>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="loginUser(form.value)">
+    <ion-grid fixed>
+      <ion-row class="ion-justify-center">
+        <ion-col align-self-center size="12">
+          <div class="ion-text-center">
+            <ion-input type="text" formControlName="username" placeholder="Ingrese su correo electronico"
+              class="inputPersonalize"></ion-input>
+          </div>
+          <div class="validationError ion-text-center">
+            <ng-container *ngFor="let validation of validationsMessage.username">
+              <div *ngIf="isValid('username', validation.type)">
+                <small>{{validation.message}}</small>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col align-self-center size="12">
+          <div class="ion-text-center">
+            <ion-input formControlName="password" type="password" class="inputPersonalize"
+              placeholder="Ingrese su password"></ion-input>
+          </div>
+          <div class="validationError ion-text-center">
+            <ng-container *ngFor="let validation of validationsMessage.password">
+              <div *ngIf="isValid('password', validation.type)">
+                <small>{{validation.message}}</small>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-around">
+        <ion-col size="6" class="ion-text-center">
+          <a routerLink="/forgot-password">Olvide mi password?</a>
+        </ion-col>
+        <ion-col size="6" class="ion-text-center">
+          <a routerLink="/register">Registrar?</a>
+        </ion-col>
+      </ion-row>
+      <ion-row class="rowButton">
+        <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+          <div class="ion-text-center">
+            <ion-button [disabled]="!form.valid" type="submit" expand="block" class="btnYellow" color="secondary">
+              <ion-icon name="lock-open" slot="start" color="light"></ion-icon>
+              <strong> ENTRAR</strong>
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 </ion-content>

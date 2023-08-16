@@ -21,7 +21,7 @@ export class AuthenticateService implements IAuthenticate {
   // Evento de control de sesion
   private sesionActiva$ = new BehaviorSubject<boolean>(false);
 
-  url = environment.urlServer + 'Account/Login';
+  url = environment.urlServer + 'auth/login';
 
   httpOptions = {
     params: new HttpParams().append('', ''),
