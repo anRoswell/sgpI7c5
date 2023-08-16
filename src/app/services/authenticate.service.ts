@@ -36,6 +36,12 @@ export class AuthenticateService implements IAuthenticate {
     private router: Router //private sideMenuService: SideMenuService,
   ) {}
 
+  updatePassword(idUser: string, password: string): Observable<any> {
+    return this.http.put(`passmbusers/${idUser}`,{ usrPassword: password });
+  }
+
+
+  
   getData(): Observable<any> {
     const req = new HttpRequest('GET', this.urlTest, {
       reportProgress: true,

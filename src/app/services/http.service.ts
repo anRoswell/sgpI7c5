@@ -40,7 +40,7 @@ export class HttpService implements IHttp {
   }
 
   Post(endPoint: string, body: Object): Observable<any> {
-    const APIREST = `${this.urlServer}${endPoint})`;
+    const APIREST = `${this.urlServer}${endPoint}`;
     return this.http
       .post<any>(`${APIREST}`, JSON.stringify(body), this.httpOptions)
       .pipe(tap((resp) => of(resp)));
