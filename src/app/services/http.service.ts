@@ -22,10 +22,15 @@ export class HttpService implements IHttp {
     }),
   };
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-  Get(ruta: string): Observable<any> {
-    throw new Error('Method not implemented.');
+  Get(endPoint: string): Observable<any> {
+    const APIREST = `${this.urlServer}${endPoint}`;
+    return this.http.get<any>(APIREST, this.httpOptions).pipe(
+      tap((resp) => {
+        of(resp);
+      })
+    );
   }
 
   GetParams(endPoint: string, params: HttpParams): Observable<any> {

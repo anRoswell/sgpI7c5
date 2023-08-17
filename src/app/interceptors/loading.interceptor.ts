@@ -86,7 +86,7 @@ export class LoadingInterceptor implements HttpInterceptor {
             mensaje500 = `Sin conexión a la red`;
             break;
           default:
-            mensaje500 = err.error ? err.error.body : mensaje500;
+            mensaje500 = err.error ? err.error.message : mensaje500;
             break;
         }
         this.presentFailedAlert(mensaje500);
@@ -117,7 +117,7 @@ export class LoadingInterceptor implements HttpInterceptor {
    */
   async presentFailedAlert(msg: string) {
     const alert = await this.alertCtrl.create({
-      header: 'Oops',
+      header: 'Error',
       message: msg,
       buttons: ['OK'],
     });

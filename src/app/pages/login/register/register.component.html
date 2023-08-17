@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-no-padding" fixed>
+<ion-content class="ion-padding" fixed>
   <!-- Logo -->
   <div class="animated ion-text-center">
     <div ion-text-center ion-padding-top style="display: flex; justify-content: center; margin: 10px">
@@ -28,22 +28,21 @@
           </ion-text>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col size="12">
-          <ion-item>
-            <ion-label position="floating">Ingrese su cédula:
-              <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input formControlName="cedula" required></ion-input>
-          </ion-item>
+      <ion-row class="ion-justify-center">
+        <ion-col align-self-center size="12">
+          <div class="ion-text-center">
+            <ion-input type="number" class="inputPersonalize" placeholder="Ingrese su cédula" formControlName="cedula"
+              required>
+            </ion-input>
+          </div>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-item>
-            <ion-label position="floating">Ingrese su token de invitación:
-              <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input formControlName="token" required></ion-input>
-          </ion-item>
+          <div class="ion-text-center">
+            <ion-input type="number" class="inputPersonalize" formControlName="token"
+              placeholder="Ingrese su token de invitación" required></ion-input>
+          </div>
         </ion-col>
       </ion-row>
       <ion-row>

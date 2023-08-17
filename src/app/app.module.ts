@@ -39,7 +39,9 @@ import { BackButtonService } from './services/back-button.service';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      innerHTMLTemplatesEnabled: true,
+    }),
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     ScrollingModule,

@@ -37,11 +37,9 @@ export class AuthenticateService implements IAuthenticate {
   ) {}
 
   updatePassword(idUser: string, password: string): Observable<any> {
-    return this.http.put(`passmbusers/${idUser}`,{ usrPassword: password });
+    return this.http.put(`passmbusers/${idUser}`, { usrPassword: password });
   }
 
-
-  
   getData(): Observable<any> {
     const req = new HttpRequest('GET', this.urlTest, {
       reportProgress: true,
@@ -90,7 +88,7 @@ export class AuthenticateService implements IAuthenticate {
   public logout() {
     sessionStorage.removeItem('currentUser');
     // window.location.replace('/login');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   public get currentUserValue() {

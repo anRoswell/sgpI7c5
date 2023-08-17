@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ILogger } from './interfaces/ILogger';
-import { MenuController } from '@ionic/angular';
+import { Config, MenuController } from '@ionic/angular';
 
 import {
   ActionPerformed,
@@ -20,8 +20,12 @@ export class AppComponent implements OnInit {
   users: any;
   constructor(
     @Inject('ILogger') public logger: ILogger,
-    @Inject('IAuthenticate') private authenticateService: IAuthenticate
-  ) {}
+    @Inject('IAuthenticate') private authenticateService: IAuthenticate,
+    config: Config
+  ) {
+    // const innerHTMLTemplatesEnabled = config.get('innerHTMLTemplatesEnabled');
+    // console.log(innerHTMLTemplatesEnabled);
+  }
 
   ngOnInit(): void {
     this.logger.info('AppComponent');

@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
   public appPages = [
     {
       title: 'CREAR CAMPAÑA',
-      url: 'crear-campania',
+      url: 'create-campaign',
       icon: 'home',
     },
     {

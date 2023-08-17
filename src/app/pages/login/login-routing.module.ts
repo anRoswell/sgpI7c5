@@ -17,7 +17,7 @@ const routes: Routes = [
     component: NovedadesComponent,
   },
   {
-    path: 'olvidepassword',
+    path: 'forgot-password',
     component: ForgotPasswordComponent,
   },
   {

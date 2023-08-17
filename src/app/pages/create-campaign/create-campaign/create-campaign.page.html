@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{title}} Campania</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed [formGroup]="form">
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Partido politico</ion-label>
+          <ion-select placeholder="Seleccione" formControlName="idPartido">
+            <ion-select-option *ngFor="let partidoPolitico of partidosPoliticos; index as i;"
+              value="{{partidoPolitico.id}}">{{partidoPolitico.descripcion}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Circuito</ion-label>
+          <ion-select placeholder="Seleccione circuito" formControlName="idCircuito">
+            <ion-select-option *ngFor="let circuito of circuitos; index as i;"
+              value="{{circuito.id}}">{{circuito.descripcion}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Postulación</ion-label>
+          <ion-select placeholder="Seleccione postulación" formControlName="idPostulacion">
+            <ion-select-option *ngFor="let postulacion of postulaciones; index as i;"
+              value="{{postulacion.id}}">{{postulacion.descripcion}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-img src="assets/img/panamaBandera.png"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-input type="text" label="Nombre campaña" label-placement="floating" placeholder="Nombre campaña"
+          formControlName="nombreCampania"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Nombre Candidato</ion-label>
+          <ion-input type="text" placeholder="Nombre del canditato" formControlName="candidatoNombre"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Apellido Candidato</ion-label>
+          <ion-input type="text" placeholder="Nombre del canditato" formControlName="candidatoApellido"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Cédula</ion-label>
+          <ion-input type="text" placeholder="Ingrese su cédula" formControlName="cedula"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="saveForm()" shape="round"> {{title}} </ion-button>
+        <ion-button (click)="saveForm()" shape="round" color="warning">
+          Descartar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

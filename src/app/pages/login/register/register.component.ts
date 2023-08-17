@@ -5,7 +5,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AlertController, NavController } from '@ionic/angular';
+import {
+  AlertController,
+  IonicSafeString,
+  NavController,
+} from '@ionic/angular';
 import { ConfirmPasswordValidator } from './confirm-password.validator';
 
 // Librerias
@@ -136,8 +140,22 @@ export class RegisterComponent {
         apellidoMaterno: [''],
         apellidoCasado: [''],
         email: ['', [Validators.required, Validators.email]],
-        usrPassword: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+        usrPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(30),
+          ],
+        ],
+        confirmPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(30),
+          ],
+        ],
         mobile: ['', [Validators.required]],
         usrTerminosCondiciones: [false, [Validators.requiredTrue]],
         token: ['', [Validators.required]],
@@ -146,8 +164,8 @@ export class RegisterComponent {
     );
 
     this.form2 = this.formBuilder.group({
-      cedula: [],
-      token: [],
+      cedula: ['', [Validators.required]],
+      token: ['', [Validators.required]],
     });
   }
 
@@ -176,7 +194,7 @@ export class RegisterComponent {
     }
 
     await this.checkconnectionService.checkConection().then(async (_) => {
-      await this.checkconnectionService.presentLoading();
+      //await this.checkconnectionService.presentLoading();
 
       this.httpService
         .Post(registerUserData, 'registrarUsuario')
@@ -186,7 +204,16 @@ export class RegisterComponent {
 
   async validarInvitacion() {
     await this.checkconnectionService.checkConection().then(async (_) => {
-      await this.checkconnectionService.presentLoading();
+      //await this.checkconnectionService.presentLoading();
+
+      if (this.form2.invalid) {
+        this.form2.markAllAsTouched();
+        this.presentAlert(
+          'VALIDACIONES',
+          'Debe llenar todos los campos obligatorios'
+        );
+        return;
+      }
 
       const params = new HttpParams().set(
         'token',
@@ -311,13 +338,8 @@ export class RegisterComponent {
     const alert = await this.alertController.create({
       cssClass: 'classAlertContrato',
       header,
-      message: `<strong>${msg}</strong>`,
-      buttons: [
-        {
-          text: 'OK',
-          handler: () => {},
-        },
-      ],
+      message: new IonicSafeString(`<strong>${msg}</strong>`),
+      buttons: ['OK'],
     });
     await alert.present();
   }

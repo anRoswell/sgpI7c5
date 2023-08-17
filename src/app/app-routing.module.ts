@@ -17,29 +17,21 @@ const routes: Routes = [
       import('./pages/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: 'home/:id',
+    path: '',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
-    canActivate: [AuthGuardService],
   },
   {
-    path: 'home',
+    path: '',
     loadChildren: () =>
-      import('./pages/home/home.module').then((m) => m.HomeModule),
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'folder/:id',
-    loadChildren: () =>
-      import('./folder/folder.module').then((m) => m.FolderPageModule),
-    canActivate: [AuthGuardService],
+      import('./pages/create-campaign/create-campaign.module').then(
+        (m) => m.CreateCampaignModule
+      ),
   },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

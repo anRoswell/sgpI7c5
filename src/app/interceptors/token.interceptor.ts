@@ -25,6 +25,7 @@ import { AuthenticateService } from '../services/authenticate.service';
 import { Router } from '@angular/router';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { StorageService } from '../services/storage.service';
+import { IStorage } from '../interfaces/IStorage';
 
 @Injectable({
   providedIn: 'root',
@@ -34,40 +35,38 @@ export class TokenInterceptor implements HttpInterceptor {
   private requests: HttpRequest<any>[] = [];
 
   constructor(
+    @Inject('IStorage') public storageService: IStorage,
     @Inject('IAuthenticate')
-    private authenticateService: AuthenticateService,
     private router: Router,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController,
-    private storageService: StorageService
+    private toastCtrl: ToastController
   ) {}
 
   intercept(
-    request: HttpRequest<any>,
+    req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // Presentamos el Loading al inicio de la llamada
-    this.requests.push(request);
+    this.requests.push(req);
 
     // add authorization header with jwt token if available
-    const currentUser = this.authenticateService.currentUserValue;
+    const token = sessionStorage.getItem('_token');
+    console.log(token);
 
-    if (
-      currentUser.data !== undefined &&
-      request.url.indexOf(environment.urlServer) !== -1
-    ) {
-      this.addToken(request, currentUser.data.token);
-    }
+    let authReq: HttpRequest<any> = this.addToken(req, token);
+    // if (token !== undefined && req.url.indexOf(environment.urlServer) !== -1) {
+    //   authReq = this.addToken(req, token);
+    // }
 
     //return next.handle(request);
-    return next.handle(request).pipe(
+    return next.handle(authReq).pipe(
       share(),
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          this.removeRequest(request);
+          this.removeRequest(req);
           let token = event.headers.get('Authorization');
           if (token) {
-            this.storageService.set('_token', token);
+            sessionStorage.setItem('_token', token);
             //this.authService.isAuthenticated.next(true);
           }
         }
@@ -107,7 +106,7 @@ export class TokenInterceptor implements HttpInterceptor {
             }
             break;
         }
-        this.removeRequest(request);
+        this.removeRequest(req);
         return throwError(errorResponse);
       })
     );

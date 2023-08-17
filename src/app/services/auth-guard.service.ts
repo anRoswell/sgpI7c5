@@ -5,7 +5,6 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { AuthenticateService } from './authenticate.service';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthGuardService {
