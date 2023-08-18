@@ -42,6 +42,13 @@ const routes: Routes = [
         (m) => m.ControlElectoresModule
       ),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/block-official/block-official.module').then(
+        (m) => m.BlockOfficialModule
+      ),
+  },
 ];
 
 @NgModule({

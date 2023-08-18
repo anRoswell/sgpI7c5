@@ -41,7 +41,7 @@ export class MenuComponent implements OnInit {
     },
     {
       title: 'BLOQUEAR FUNCIONARIO',
-      url: 'bloquear-funcionario',
+      url: 'block-official',
       icon: 'home',
     },
     {

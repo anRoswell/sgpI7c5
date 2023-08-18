@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bloquear funcionario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="saveForm(form.value)">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+
+          <ion-input label="Cédula" placeholder="Digite su cédula" labelPlacement="floating" type="number"
+            formControlName="cedula" fill="outline" maxlength="15" helperText="Ingrese su cedula"
+            errorText="Cédula invalida"></ion-input>
+          <br />
+          <ion-input label="Outline input" label-placement="floating" fill="outline"
+            placeholder="Enter text"></ion-input>
+        </ion-col>
+        <ion-col size="12">
+          <ion-button (click)="click()">
+            Buscar
+            <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">Datos del usaurio</ion-col>
+        <ion-col size="6"></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="click()" expand="block" fill="clear" shape="round">
+            Descartar
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)="click()" expand="block" fill="clear" shape="round">
+            Bloquear
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

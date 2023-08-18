@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { ComunesModule } from './common/comunes.module';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -10,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 // Libreria
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { ComunesModule } from './common/comunes.module';
 
 // SQLite
 import { DbnameVersionService } from './services/dbname-version.service';
@@ -44,7 +44,6 @@ import { BackButtonService } from './services/back-button.service';
     }),
     IonicStorageModule.forRoot(),
     AppRoutingModule,
-    ScrollingModule,
     HttpClientModule,
     ComunesModule,
   ],
