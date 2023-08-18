@@ -12,22 +12,22 @@
     <ion-row>
       <ion-col size="6">
         <ion-item>
-          <ion-label position="floating">Partido politico</ion-label>
-          <ion-select placeholder="Seleccione" formControlName="idPartido">
+          <ion-select label="Partido politico" label-placement="floating" placeholder="Seleccione"
+            formControlName="idPartido">
             <ion-select-option *ngFor="let partidoPolitico of partidosPoliticos; index as i;"
               value="{{partidoPolitico.id}}">{{partidoPolitico.descripcion}}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Circuito</ion-label>
-          <ion-select placeholder="Seleccione circuito" formControlName="idCircuito">
+          <ion-select label="Circuito" label-placement="floating" placeholder="Seleccione circuito"
+            formControlName="idCircuito">
             <ion-select-option *ngFor="let circuito of circuitos; index as i;"
               value="{{circuito.id}}">{{circuito.descripcion}}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label position="floating">Postulación</ion-label>
-          <ion-select placeholder="Seleccione postulación" formControlName="idPostulacion">
+          <ion-select label="Postulación" label-placement="floating" placeholder="Seleccione postulación"
+            formControlName="idPostulacion">
             <ion-select-option *ngFor="let postulacion of postulaciones; index as i;"
               value="{{postulacion.id}}">{{postulacion.descripcion}}</ion-select-option>
           </ion-select>
@@ -39,38 +39,44 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <ion-input type="text" label="Nombre campaña" label-placement="floating" placeholder="Nombre campaña"
-          formControlName="nombreCampania"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
         <ion-item>
-          <ion-label position="floating">Nombre Candidato</ion-label>
-          <ion-input type="text" placeholder="Nombre del canditato" formControlName="candidatoNombre"></ion-input>
+          <ion-input type="text" label="Nombre campaña" label-placement="floating" placeholder="Nombre campaña"
+            formControlName="nombreCampania"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="12">
         <ion-item>
-          <ion-label position="floating">Apellido Candidato</ion-label>
-          <ion-input type="text" placeholder="Nombre del canditato" formControlName="candidatoApellido"></ion-input>
+          <ion-input label="Nombre Candidato" label-placement="floating" type="text" placeholder="Nombre del canditato"
+            formControlName="candidatoNombre"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="12">
         <ion-item>
-          <ion-label position="floating">Cédula</ion-label>
-          <ion-input type="text" placeholder="Ingrese su cédula" formControlName="cedula"></ion-input>
+          <ion-input type="text" label="Apellido Candidato" label-placement="floating"
+            placeholder="Apellido del candidato" formControlName="candidatoApellido"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <ion-button (click)="saveForm()" shape="round"> {{title}} </ion-button>
+        <ion-item>
+          <ion-input type="text" label="Cédula" label-placement="floating" placeholder="Ingrese su cédula"
+            formControlName="cedula"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="saveForm()" shape="round">
+          <ion-icon slot="start" name="star"></ion-icon>
+          {{title}}
+        </ion-button>
         <ion-button (click)="saveForm()" shape="round" color="warning">
+          <ion-icon slot="start" name="star"></ion-icon>
           Descartar
         </ion-button>
       </ion-col>

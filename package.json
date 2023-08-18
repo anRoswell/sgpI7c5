@@ -47,6 +47,7 @@
     "ng2-pdf-viewer": "^9.1.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "vue-virtual-scroller": "^2.0.0-beta.8",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

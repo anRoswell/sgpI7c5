@@ -51,8 +51,8 @@ export class LoginComponent {
   constructor(
     @Inject('ILogger') public logger: ILogger,
     @Inject('IHttp') public http: IHttp,
-    @Inject('IAuthenticate') public authenticateService: IAuthenticate,
     @Inject('IStorage') public storageService: IStorage,
+    @Inject('IAuthenticate') public authenticateService: IAuthenticate,
     private router: Router,
     private fb: FormBuilder,
     private checkconnectionService: CheckconnectionService,

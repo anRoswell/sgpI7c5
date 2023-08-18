@@ -51,7 +51,6 @@ export class TokenInterceptor implements HttpInterceptor {
 
     // add authorization header with jwt token if available
     const token = sessionStorage.getItem('_token');
-    console.log(token);
 
     let authReq: HttpRequest<any> = this.addToken(req, token);
     // if (token !== undefined && req.url.indexOf(environment.urlServer) !== -1) {

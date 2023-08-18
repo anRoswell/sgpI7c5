@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" (click)="closeModal()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+    <ion-title>Historico seguimiento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let hs of historicosSeguimiento">
+    <ion-card-header>
+      <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+      <ion-card-title>Awesome Title</ion-card-title>
+    </ion-card-header>
+    <ion-card-content> {{hs.observacion}} </ion-card-content>
+  </ion-card>
+</ion-content>

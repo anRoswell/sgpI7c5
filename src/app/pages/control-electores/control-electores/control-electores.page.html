@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Control electores</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <!-- Searchbar with a custom debounce -->
+    <ion-searchbar debounce="500" placeholder="Filter Schedules" animated
+      (ionChange)="ionSearch($event)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-segment (ionChange)="segmentChanged($event)" [value]="selectedSegment" scrollable="true">
+    <ion-segment-button [value]="item.title" *ngFor="let item of segmentList;let i = index"
+      (click)="_segmentSelected(item,i)">
+      <ion-label>{{item.title}}</ion-label>
+      <ion-icon name="{{item.icon}}"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="grids[0].value">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngFor="let tmp of electores; let i = index">
+            <ion-label>
+              <ion-text color="primary">
+                <h2>{{i + 1}}. Nro Doc: {{tmp.cedula}}</h2>
+                <p>Elector: {{tmp.completeName}}</p>
+              </ion-text>
+            </ion-label>
+            <ion-button (click)="lockElector(tmp)" fill="clear">
+              <ion-icon slot="end" name="lock-closed"></ion-icon>
+            </ion-button>
+            <!-- <ion-button (click)="editElector(tmp, 'edit')" fill="clear">
+              <ion-icon slot="end" name="pencil"></ion-icon>
+            </ion-button> -->
+            <ion-button (click)="consultarElector(tmp)" fill="clear">
+              <ion-icon slot="end" name="search"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="grids[1].value">
+    <!-- 	00 BARRIDO CARRITO -->
+    <div class="divCronometro" id="divCrono1">
+      <ion-row>
+        <ion-col size="12">
+          <ion-list>
+            <cdk-virtual-scroll-viewport class="block-list-num" itemSize="50">
+              <div class="block-num" *cdkVirtualFor="let n of electoresTmp">
+                <ion-item *ngFor="let tmp of electoresTmp; let i = index">
+                  <ion-label>
+                    <ion-text color="primary">
+                      <h2>{{i + 1}}. Nro Doc: {{tmp.cedula}}</h2>
+                      <p>Elector: {{tmp.completeName}}</p>
+                    </ion-text>
+                  </ion-label>
+                  <ion-button (click)="lockElector(tmp)" fill="clear">
+                    <ion-icon slot="end" name="lock-closed"></ion-icon>
+                  </ion-button>
+                  <ion-button (click)="editElector(tmp, 'edit')" fill="clear">
+                    <ion-icon slot="end" name="pencil"></ion-icon>
+                  </ion-button>
+                  <ion-button (click)="consultarElector(tmp)" fill="clear">
+                    <ion-icon slot="end" name="search"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </div>
+            </cdk-virtual-scroll-viewport>
+            <!-- <ion-item *ngFor="let tmp of electoresTmp; let i = index">
+              <ion-label>
+                <ion-text color="primary">
+                  <h2>{{i + 1}}. Nro Doc: {{tmp.cedula}}</h2>
+                  <p>Elector: {{tmp.completeName}}</p>
+                </ion-text>
+              </ion-label>
+              <ion-button (click)="lockElector(tmp)" fill="clear">
+                <ion-icon slot="end" name="lock-closed"></ion-icon>
+              </ion-button>
+              <ion-button (click)="editElector(tmp, 'edit')" fill="clear">
+                <ion-icon slot="end" name="pencil"></ion-icon>
+              </ion-button>
+              <ion-button (click)="consultarElector(tmp)" fill="clear">
+                <ion-icon slot="end" name="search"></ion-icon>
+              </ion-button>
+            </ion-item> -->
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+  <!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
+  <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" (click)="newElector()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

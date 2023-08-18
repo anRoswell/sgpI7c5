@@ -28,6 +28,20 @@ const routes: Routes = [
         (m) => m.CreateCampaignModule
       ),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/personal-asign/personal-asign.module').then(
+        (m) => m.PersonalAsignModule
+      ),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/control-electores/control-electores.module').then(
+        (m) => m.ControlElectoresModule
+      ),
+  },
 ];
 
 @NgModule({

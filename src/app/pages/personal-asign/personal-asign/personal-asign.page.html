@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Invitar Personal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed [formGroup]="form">
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-select formControlName="pJerarquiasID" aria-label="Jerarquia a asignar:" placeholder="Seleccione">
+            <ion-select-option *ngFor="let jerarquia of jerarquias; index as i;"
+              value="{{jerarquia.id}}">{{jerarquia.Descripcion}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-input label="Cédula" label-placement="floating" formControlName="cedula" type="text"
+            placeholder="Ingrese cédula"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-input type="text" label="Correo" label-placement="floating" placeholder="Ingrese Correo:"
+            formControlName="email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-select aria-label="Asignar a colaborador:" formControlName="userIDPadre"
+            placeholder="Seleccione registro" interface="action-sheet">
+            <ion-select-option *ngFor="let user of users; index as i;"
+              value="{{user.id}}">{{user.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="saveForm()" shape="round"> Invitar </ion-button>
+        <ion-button (click)="saveForm()" shape="round" color="warning">
+          Descartar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

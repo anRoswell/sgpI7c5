@@ -1,11 +1,14 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
+
+// Interfaces
 import { IHttp } from 'src/app/interfaces/IHttp';
 import { ILogger } from 'src/app/interfaces/ILogger';
 import { IStorage } from 'src/app/interfaces/IStorage';
+
+// Services
 import { CheckconnectionService } from 'src/app/services/checkconnection.service';
-import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-list-campaign',

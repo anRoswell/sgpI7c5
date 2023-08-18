@@ -69,7 +69,7 @@ export class AuthenticateService implements IAuthenticate {
     return this.http.post<any>(this.url, credentials, this.httpOptions).pipe(
       tap((resp) => {
         if (resp) {
-          sessionStorage.setItem('currentUser', JSON.stringify(resp));
+          sessionStorage.setItem('userLogin', JSON.stringify(resp));
         }
 
         of(resp);

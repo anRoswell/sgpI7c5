@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{title}} seguimiento</ion-title>
+    <ion-button slot="end" (click)="goToHistoricoSeguimiento()" *ngIf="showBtnHistory">
+      <ion-icon slot="icon-only" name="layers"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" disabled>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Nombre Completo</ion-label>
+            <ion-input type="text" formControlName="nombre"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Celular1</ion-label>
+            <ion-input type="number" formControlName="celular1"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="floating">Celular2</ion-label>
+            <ion-input type="number" formControlName="celular2"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input type="text" formControlName="correo"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="validateNew()">
+        <ion-row>
+          <ion-col size="12">
+            <h4>SEGUIMIENTO</h4>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="floating">Tipo de seguimiento</ion-label>
+              <ion-select formControlName="tipoSeguimientoID" value="peperoni" placeholder="Seleccione">
+                <ion-select-option value="peperoni">Peperoni</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <!-- Textarea with custom number of rows and cols -->
+            <ion-item>
+              <ion-label position="floating">Observación</ion-label>
+              <ion-textarea rows="6" cols="20" placeholder="Ingrese aqui su observación"
+                formControlName="observacion"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <ion-button (click)="saveForm()" expand="block" fill="clear" shape="solid" color="secondary">
+              Descartar
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button (click)="saveForm()" expand="block" fill="solid" shape="round">
+              Guardar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div>
+        <ion-row>
+          <ion-col size="12">
+            <ion-card *ngFor="let hs of historicosSeguimiento">
+              <ion-card-header>
+                <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
+                <ion-card-title>Awesome Title</ion-card-title>
+              </ion-card-header>
+              <ion-card-content> {{hs.observacion}} </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
+  </form>
+</ion-content>

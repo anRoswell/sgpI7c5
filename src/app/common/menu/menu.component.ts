@@ -21,12 +21,12 @@ export class MenuComponent implements OnInit {
     },
     {
       title: 'ASIGNAR PERSONAL',
-      url: 'asignar-personal',
+      url: 'personal-asign',
       icon: 'home',
     },
     {
       title: 'CONTROL ELECTORES',
-      url: 'control-electores',
+      url: 'elector-control',
       icon: 'home',
     },
     {
