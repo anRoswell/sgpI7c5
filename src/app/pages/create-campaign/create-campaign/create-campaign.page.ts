@@ -43,8 +43,8 @@ export class CreateCampaignPage implements OnInit {
       idPostulacion: ['', [Validators.required]],
       candidatoNombre: ['', [Validators.required]],
       cedula: ['', [Validators.required]],
-      userIdCreatedAt: ['', [Validators.required]],
-      userIdUpdatedAt: [''],
+      userIdCreatedAt: ['', [Validators.required]]
+      /*,userIdUpdatedAt: [''],*/
     });
   }
 
@@ -70,7 +70,7 @@ export class CreateCampaignPage implements OnInit {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       return;
-    }
+    } 
 
     this.checkconnectionService.checkConection().then(async (_) => {
       if (this.action === 'crear') {
@@ -90,6 +90,7 @@ export class CreateCampaignPage implements OnInit {
           });
       }
     });
+    
   }
 
   private async editForm() {
@@ -103,6 +104,11 @@ export class CreateCampaignPage implements OnInit {
     this.form.patchValue(this.campania);
     this.form.patchValue({ idPartido, idCircuito, idPostulacion });
   }
+
+  resetForm(){
+    this.form.reset();
+  }
+  
 
   //#region ALERT
   private async presentAlert() {
@@ -136,3 +142,4 @@ export class CreateCampaignPage implements OnInit {
     });
   }
 }
+

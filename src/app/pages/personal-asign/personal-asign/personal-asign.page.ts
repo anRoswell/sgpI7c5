@@ -120,4 +120,8 @@ export class PersonalAsignPage implements OnInit {
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
+
+  resetForm(){
+    this.form.reset();
+  }
 }
