@@ -467,7 +467,7 @@ export class CreateElectorPage implements OnInit {
         .set('action', this.action.toString())
         .set('electorId', this.electorId?.toString())
         .set('campaniaId', this.userData.idCampania.toString())
-        .set('perfilId', this.userData.profileId.toString());
+        // .set('perfilId', this.userData.profileId.toString());
 
       this.httpService
         .GetParams('spGetDataSelectFormElector', params)
