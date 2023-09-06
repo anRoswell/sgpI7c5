@@ -2,12 +2,12 @@ import { HttpParams } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController, MenuController } from '@ionic/angular';
-import { IElectoresTmp } from 'src/app/interfaces/IElectoresTmp';
 
 // Interface
 import { IHttp } from 'src/app/interfaces/IHttp';
 import { ILogger } from 'src/app/interfaces/ILogger';
 import { IStorage } from 'src/app/interfaces/IStorage';
+import { IElectoresTmp } from 'src/app/interfaces/IElectoresTmp';
 
 // Service
 import { CheckconnectionService } from 'src/app/services/checkconnection.service';
@@ -174,6 +174,7 @@ export class ControlElectoresPage implements OnInit {
 
   async ngOnInit() {
     this.user = await this.storageService.getData('userLogin');
+    console.log(this.user);
     this.goToFindElectores();
   }
 
@@ -190,7 +191,6 @@ export class ControlElectoresPage implements OnInit {
       //const userData: any = await this.storageService.getData('userLogin');
 
       const params = new HttpParams()
-        .set('perfilId', this.user.profileId.toString())
         .set('userId', this.user.id.toString())
         .set('campaniaId', this.user.idCampania.toString());
 
