@@ -196,9 +196,10 @@ export class ControlElectoresPage implements OnInit {
 
       this.httpService
         .GetParams('spElectores', params)
-        .subscribe((dataEditForm) => {
+        .subscribe((dataEditForm: any) => {
           this.electoresTmp = [];
           this.electoresTmp = dataEditForm[1];
+          console.log(this.electoresTmp);
 
           this.electores = [];
           this.electores = dataEditForm[0];
@@ -274,6 +275,7 @@ export class ControlElectoresPage implements OnInit {
 
       element.value = false;
     });
+
     this.selectedSegment = ev.detail.value;
   }
 
