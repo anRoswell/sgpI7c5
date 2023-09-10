@@ -3,9 +3,9 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import {
   FormGroup,
   Validators,
-  UntypedFormArray,
   FormBuilder,
   FormArray,
+  AbstractControl,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IonContent, AlertController, MenuController } from '@ionic/angular';
@@ -139,15 +139,16 @@ export class CreateElectorPage implements OnInit {
     @Inject('IStorage') public storageService: IStorage,
     private fb: FormBuilder,
     private alertController: AlertController,
-
+    private menu: MenuController,
     private checkconnectionService: CheckconnectionService,
     private route: ActivatedRoute
   ) {
+    this.menu.enable(true);
     this.form = this.fb.group({
       id: [],
       action: ['insertTmp'],
       userIdCreatedAt: ['', [Validators.required]],
-      campananiaID: ['', [Validators.required]],
+      campaniaID: ['', [Validators.required]],
 
       cedula: [null],
       primerNombre: [null],
@@ -243,11 +244,11 @@ export class CreateElectorPage implements OnInit {
   public async saveFormTmp() {
     this.form.patchValue({
       userIdCreatedAt: this.userData.id,
-      campananiaID: this.userData.idCampania,
+      campaniaID: this.userData.idCampania,
     });
 
     this.checkconnectionService.checkConection().then(async (_) => {
-      if (this.action === 'crear') {
+      if (this.action === 'new') {
         this.form.patchValue({
           action: 'insertTmp',
         });
@@ -257,16 +258,18 @@ export class CreateElectorPage implements OnInit {
             this.presentAlert('Registro exitoso!!!');
           });
       } else {
-        const dataForm = this.form.value;
         this.form.patchValue({
           action: 'update',
         });
-        this.httpService
-          .Put(`elector/${this.form.get('id')?.value}}`, dataForm)
-          .subscribe((resp) => {
-            console.log(resp);
-            this.presentAlert('');
-          });
+        const dataForm = this.form.value;
+
+        console.log(this.form);
+        this.ClearValidator();
+        const ruta = `elector/${this.form.get('id')?.value}`;
+        this.httpService.Put(ruta, dataForm).subscribe((resp) => {
+          console.log(resp);
+          this.presentAlert('');
+        });
       }
     });
   }
@@ -285,6 +288,9 @@ export class CreateElectorPage implements OnInit {
       action: 'final',
     });
 
+    console.log(this.action);
+
+    this.PutValidator();
     if (!this.form.valid) {
       this.form.markAllAsTouched(); //Muestra en rojo los inputs obligatorios
       alert(`Debes llenar los datos obligatorios del formulario`);
@@ -302,6 +308,144 @@ export class CreateElectorPage implements OnInit {
           });
       }
     });
+  }
+
+  private PutValidator() {
+    this.PutOrClearFormValidators('cedula');
+    this.PutOrClearFormValidators('primerNombre');
+    this.PutOrClearFormValidators('segundoNombre');
+    this.PutOrClearFormValidators('apellidoPaterno');
+    this.PutOrClearFormValidators('apellidoMaterno');
+    this.PutOrClearFormValidators('apellidoCasado');
+    this.PutOrClearFormValidators('celular1');
+    this.PutOrClearFormValidators('celular2');
+    this.PutOrClearFormValidators('telefono');
+    this.PutOrClearFormValidators('correo');
+    this.PutOrClearFormValidators('sexoID');
+    this.PutOrClearFormValidators('edad');
+    this.PutOrClearFormValidators('fechaNacimiento');
+    this.PutOrClearFormValidators('provinciaID');
+    this.PutOrClearFormValidators('distritoID');
+    this.PutOrClearFormValidators('corregimientoID');
+    this.PutOrClearFormValidators('comunidad');
+    this.PutOrClearFormValidators('barrio');
+    this.PutOrClearFormValidators('barriada');
+    this.PutOrClearFormValidators('sector');
+    this.PutOrClearFormValidators('edificio');
+    this.PutOrClearFormValidators('calle');
+    this.PutOrClearFormValidators('numCasaApto');
+    this.PutOrClearFormValidators('otrasReferencias');
+    this.PutOrClearFormValidators('ubicacionLat');
+    this.PutOrClearFormValidators('ubicacionLng');
+    this.PutOrClearFormValidators('ubicacion');
+    this.PutOrClearFormValidators('centroVotacionID');
+    this.PutOrClearFormValidators('mesaId');
+    this.PutOrClearFormValidators('estadoCivilID');
+    this.PutOrClearFormValidators('conyugePareja');
+    this.PutOrClearFormValidators('cedulaPareja');
+    this.PutOrClearFormValidators('amigo');
+    this.PutOrClearFormValidators('celularAmigo');
+    this.PutOrClearFormValidators('profesionID');
+    this.PutOrClearFormValidators('nivelEducativoID');
+    this.PutOrClearFormValidators('situacionLaboralID');
+    this.PutOrClearFormValidators('lugarTrabajo');
+    this.PutOrClearFormValidators('hijos');
+    this.PutOrClearFormValidators('situacionViviendaID');
+    this.PutOrClearFormValidators('ingresoAproximadoID');
+    this.PutOrClearFormValidators('pertenecePartidoID');
+    this.PutOrClearFormValidators('partidoID');
+    this.PutOrClearFormValidators('religionID');
+    this.PutOrClearFormValidators('religionOtra');
+    this.PutOrClearFormValidators('whatsapp');
+    this.PutOrClearFormValidators('facebook');
+    this.PutOrClearFormValidators('instagram');
+    this.PutOrClearFormValidators('twitter');
+    this.PutOrClearFormValidators('youtube');
+    this.PutOrClearFormValidators('tiktok');
+    this.PutOrClearFormValidators('telegram');
+    this.PutOrClearFormValidators('snapchapt');
+    this.PutOrClearFormValidators('otra');
+  }
+
+  private ClearValidator() {
+    this.PutOrClearFormValidators('cedula', 'noRequired');
+    this.PutOrClearFormValidators('primerNombre', 'noRequired');
+    this.PutOrClearFormValidators('segundoNombre', 'noRequired');
+    this.PutOrClearFormValidators('apellidoPaterno', 'noRequired');
+    this.PutOrClearFormValidators('apellidoMaterno', 'noRequired');
+    this.PutOrClearFormValidators('apellidoCasado', 'noRequired');
+    this.PutOrClearFormValidators('celular1', 'noRequired');
+    this.PutOrClearFormValidators('celular2', 'noRequired');
+    this.PutOrClearFormValidators('telefono', 'noRequired');
+    this.PutOrClearFormValidators('correo', 'noRequired');
+    this.PutOrClearFormValidators('sexoID', 'noRequired');
+    this.PutOrClearFormValidators('edad', 'noRequired');
+    this.PutOrClearFormValidators('fechaNacimiento', 'noRequired');
+    this.PutOrClearFormValidators('provinciaID', 'noRequired');
+    this.PutOrClearFormValidators('distritoID', 'noRequired');
+    this.PutOrClearFormValidators('corregimientoID', 'noRequired');
+    this.PutOrClearFormValidators('comunidad', 'noRequired');
+    this.PutOrClearFormValidators('barrio', 'noRequired');
+    this.PutOrClearFormValidators('barriada', 'noRequired');
+    this.PutOrClearFormValidators('sector', 'noRequired');
+    this.PutOrClearFormValidators('edificio', 'noRequired');
+    this.PutOrClearFormValidators('calle', 'noRequired');
+    this.PutOrClearFormValidators('numCasaApto', 'noRequired');
+    this.PutOrClearFormValidators('otrasReferencias', 'noRequired');
+    this.PutOrClearFormValidators('ubicacionLat', 'noRequired');
+    this.PutOrClearFormValidators('ubicacionLng', 'noRequired');
+    this.PutOrClearFormValidators('ubicacion', 'noRequired');
+    this.PutOrClearFormValidators('centroVotacionID', 'noRequired');
+    this.PutOrClearFormValidators('mesaId', 'noRequired');
+    this.PutOrClearFormValidators('estadoCivilID', 'noRequired');
+    this.PutOrClearFormValidators('conyugePareja', 'noRequired');
+    this.PutOrClearFormValidators('cedulaPareja', 'noRequired');
+    this.PutOrClearFormValidators('amigo', 'noRequired');
+    this.PutOrClearFormValidators('celularAmigo', 'noRequired');
+    this.PutOrClearFormValidators('profesionID', 'noRequired');
+    this.PutOrClearFormValidators('nivelEducativoID', 'noRequired');
+    this.PutOrClearFormValidators('situacionLaboralID', 'noRequired');
+    this.PutOrClearFormValidators('lugarTrabajo', 'noRequired');
+    // hijos: this.fb.array([]), 'noRequired',
+    this.PutOrClearFormValidators('hijos', 'noRequired');
+    this.PutOrClearFormValidators('situacionViviendaID', 'noRequired');
+    this.PutOrClearFormValidators('ingresoAproximadoID', 'noRequired');
+    this.PutOrClearFormValidators('pertenecePartidoID', 'noRequired');
+    this.PutOrClearFormValidators('partidoID', 'noRequired');
+    this.PutOrClearFormValidators('religionID', 'noRequired');
+    this.PutOrClearFormValidators('religionOtra', 'noRequired');
+    this.PutOrClearFormValidators('whatsapp', 'noRequired');
+    this.PutOrClearFormValidators('facebook', 'noRequired');
+    this.PutOrClearFormValidators('instagram', 'noRequired');
+    this.PutOrClearFormValidators('twitter', 'noRequired');
+    this.PutOrClearFormValidators('youtube', 'noRequired');
+    this.PutOrClearFormValidators('tiktok', 'noRequired');
+    this.PutOrClearFormValidators('telegram', 'noRequired');
+    this.PutOrClearFormValidators('snapchapt', 'noRequired');
+    this.PutOrClearFormValidators('otra', 'noRequired');
+  }
+
+  /**
+   *
+   * Metodo para actualizar el control del formulario a requerido
+   * @param controlname nombre del control
+   */
+  private PutOrClearFormValidators(
+    controlname: string,
+    option: string = 'required'
+  ) {
+    let control: AbstractControl<any, any> | null = null;
+    control = this.form.get(controlname);
+
+    switch (option) {
+      case 'required':
+        control?.setValidators([Validators.required]);
+        break;
+      default:
+        control?.clearValidators();
+        break;
+    }
+    control?.updateValueAndValidity();
   }
 
   /**
@@ -460,14 +604,14 @@ export class CreateElectorPage implements OnInit {
   private async getDataSelectFormElector() {
     this.checkconnectionService.checkConection().then(async (_) => {
       await this.checkconnectionService.presentLoading();
+      console.log(this.userData);
 
       const params = new HttpParams()
         .set('userId', this.userData.id.toString())
-        .set('campaniaId', this.userData.idCampania.toString())
         .set('action', this.action.toString())
         .set('electorId', this.electorId?.toString())
-        .set('campaniaId', this.userData.idCampania.toString())
-        // .set('perfilId', this.userData.profileId.toString());
+        .set('campaniaId', this.userData.idCampania.toString());
+      // .set('perfilId', this.userData.profileId.toString());
 
       this.httpService
         .GetParams('spGetDataSelectFormElector', params)
