@@ -36,13 +36,16 @@
       <ion-row>
         <ion-col size="6" size-md="6" size-lg="6" size-xg="6">
           <ion-item>
-            <ion-input label="Cédula" labelPlacement="floating" type="text" formControlName="cedula">
+            <ion-input label="Cédula" labelPlacement="floating" type="number" helperText="Ingrese una cédula valida"
+              errorText="Cédula Invalida" [counter]="true" minlength="5" maxlength="15" formControlName="cedula">
             </ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-input label="Primer nombre" labelPlacement="floating" type="text" formControlName="primerNombre">
+            <ion-input label="Primer nombre" labelPlacement="floating" type="text"
+              helperText="Ingrese primer nombre valida" errorText="Ingrese primer nombre"
+              formControlName="primerNombre">
             </ion-input>
           </ion-item>
         </ion-col>
@@ -66,14 +69,14 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Apellido materno</ion-label>
-            <ion-input type="text" formControlName="apellidoMaterno"></ion-input>
+
+            <ion-input label="Apellido materno" labelPlacement="floating" formControlName="apellidoMaterno"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Apellido casado</ion-label>
-            <ion-input type="text" formControlName="apellidoCasado"></ion-input>
+
+            <ion-input label="Apellido casado" labelPlacement="floating" formControlName="apellidoCasado"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -81,29 +84,12 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Celular 1</ion-label>
-            <ion-input type="text" formControlName="celular1"></ion-input>
+            <ion-input label="Celular 1" labelPlacement="floating" formControlName="celular1"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Celular 2</ion-label>
-            <ion-input type="text" formControlName="celular2"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Télefono</ion-label>
-            <ion-input type="number" formControlName="telefono"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Correo</ion-label>
-            <ion-input type="text" formControlName="correo"></ion-input>
+            <ion-input label="Celular 2" labelPlacement="floating" formControlName="celular2"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -111,16 +97,27 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Sexo</ion-label>
-            <ion-select placeholder="Seleccione" formControlName="sexoID">
+            <ion-input label="Télefono" labelPlacement="floating" formControlName="telefono"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-input label="Correo" labelPlacement="floating" formControlName="correo"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-select label="Sexo" labelPlacement="fixed" placeholder="Seleccione" formControlName="sexoID">
               <ion-select-option *ngFor="let sexo of sexos" value="{{sexo.id}}">{{sexo.descripcion}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Edad</ion-label>
-            <ion-input type="number" formControlName="edad"></ion-input>
+            <ion-input label="Edad" labelPlacement="floating" formControlName="edad"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -140,10 +137,9 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Provincia</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
+            <ion-select label="Provincia" label-placement="floating" placeholder="Favorite Fruit"
+              [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
               formControlName="provinciaID">
-              <ion-select-option value='null' selected></ion-select-option>
               <ion-select-option *ngFor="let provincia of provincias"
                 value="{{provincia.id}}">{{provincia.descripcion}}</ion-select-option>
             </ion-select>
@@ -151,9 +147,8 @@
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Distrito</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
-              formControlName="distritoID">
+            <ion-select label="Distrito" labelPlacement="floating" [interfaceOptions]="customActionSheetOptions"
+              interface="action-sheet" placeholder="Seleccione" formControlName="distritoID">
               <ion-select-option *ngFor="let distrito of distritos"
                 value="{{distrito.id}}">{{distrito.descripcion}}</ion-select-option>
             </ion-select>
@@ -164,9 +159,8 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Corregimiento</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
-              formControlName="corregimientoID">
+            <ion-select label="Corregimiento" labelPlacement="floating" [interfaceOptions]="customActionSheetOptions"
+              interface="action-sheet" placeholder="Seleccione" formControlName="corregimientoID">
               <ion-select-option *ngFor="let corregimiento of corregimientos"
                 value="{{corregimiento.id}}">{{corregimiento.descripcion}}</ion-select-option>
             </ion-select>
@@ -174,8 +168,7 @@
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Comunidad</ion-label>
-            <ion-input type="text" formControlName="comunidad"></ion-input>
+            <ion-input label="Comunidad" labelPlacement="floating" formControlName="comunidad"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -183,29 +176,12 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Barrio</ion-label>
-            <ion-input type="text" formControlName="barrio"></ion-input>
+            <ion-input label="Barrio" labelPlacement="floating" formControlName="barrio"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Barriada</ion-label>
-            <ion-input type="text" formControlName="barriada"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Sector</ion-label>
-            <ion-input placeholder="Seleccione" formControlName="sector"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Edificio</ion-label>
-            <ion-input type="text" formControlName="edificio"></ion-input>
+            <ion-input label="Barriada" labelPlacement="floating" formControlName="barriada"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -213,14 +189,27 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">No Casa o Apto.</ion-label>
-            <ion-input type="number" formControlName="numCasaApto"></ion-input>
+            <ion-input label="Sector" labelPlacement="floating" placeholder="Seleccione"
+              formControlName="sector"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Otras referencias</ion-label>
-            <ion-input type="text" formControlName="otrasReferencias"></ion-input>
+            <ion-input label="Edificio" labelPlacement="floating" formControlName="edificio"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-input label="No Casa o Apto." labelPlacement="floating" formControlName="numCasaApto"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-input label="Otras referencias" labelPlacement="floating"
+              formControlName="otrasReferencias"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -228,8 +217,7 @@
       <ion-row>
         <ion-col size="10">
           <ion-item>
-            <ion-label position="floating">Ubicación</ion-label>
-            <ion-input type="text" formControlName="ubicacion"></ion-input>
+            <ion-input label="Ubicación" labelPlacement="floating" formControlName="ubicacion"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="2">
@@ -241,9 +229,8 @@
       <ion-row>
         <ion-col size="8">
           <ion-item>
-            <ion-label position="floating">Centro votación</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
-              formControlName="centroVotacionID">
+            <ion-select label="Centro votación" labelPlacement="floating" [interfaceOptions]="customActionSheetOptions"
+              interface="action-sheet" placeholder="Seleccione" formControlName="centroVotacionID">
               <ion-select-option *ngFor="let centroVotacion of centrosVotacion"
                 value="{{centroVotacion.id}}">{{centroVotacion.descripcion}}</ion-select-option>
             </ion-select>
@@ -251,9 +238,8 @@
         </ion-col>
         <ion-col size="4">
           <ion-item>
-            <ion-label position="floating">Mesa</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
-              formControlName="mesaId">
+            <ion-select label="Mesa" labelPlacement="floating" [interfaceOptions]="customActionSheetOptions"
+              interface="action-sheet" placeholder="Seleccione" formControlName="mesaId">
               <ion-select-option *ngFor="let mesa of mesas" value="{{mesa.id}}">{{mesa.descripcion}}</ion-select-option>
             </ion-select>
           </ion-item>
@@ -265,9 +251,8 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Estado civil</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
-              formControlName="estadoCivilID">
+            <ion-select label="Estado civil" labelPlacement="floating" [interfaceOptions]="customActionSheetOptions"
+              interface="action-sheet" placeholder="Seleccione" formControlName="estadoCivilID">
               <ion-select-option *ngFor="let estadoCivil of estadosCivil"
                 value="{{estadoCivil.id}}">{{estadoCivil.descripcion}}</ion-select-option>
             </ion-select>
@@ -275,8 +260,7 @@
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Conyugue o Pareja</ion-label>
-            <ion-input type="text" formControlName="conyugePareja"></ion-input>
+            <ion-input label="Conyugue o Pareja" labelPlacement="floating" formControlName="conyugePareja"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -284,14 +268,12 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Cédula de pareja</ion-label>
-            <ion-input type="text" formControlName="cedulaPareja"></ion-input>
+            <ion-input label="Cédula de pareja" labelPlacement="floating" formControlName="cedulaPareja"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Amigo</ion-label>
-            <ion-input type="text" formControlName="amigo"></ion-input>
+            <ion-input label="Amigo" labelPlacement="floating" formControlName="amigo"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -299,16 +281,13 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Celular amigo</ion-label>
-            <ion-input type="number" formControlName="celularAmigo"></ion-input>
+            <ion-input label="Celular amigo" labelPlacement="floating" formControlName="celularAmigo"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Profesiones</ion-label>
-
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
-              formControlName="profesionID">
+            <ion-select label="Profesiones" labelPlacement="floating" [interfaceOptions]="customActionSheetOptions"
+              interface="action-sheet" placeholder="Seleccione" formControlName="profesionID">
               <ion-select-option *ngFor="let profesione of profesiones"
                 value="{{profesione.id}}">{{profesione.descripcion}}</ion-select-option>
             </ion-select>
@@ -319,9 +298,8 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Nivel Educativo</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
-              formControlName="nivelEducativoID">
+            <ion-select label="Nivel Educativo" labelPlacement="floating" [interfaceOptions]="customActionSheetOptions"
+              interface="action-sheet" placeholder="Seleccione" formControlName="nivelEducativoID">
               <ion-select-option *ngFor="let nivelEducativo of nivelesEducativo"
                 value="{{nivelEducativo.id}}">{{nivelEducativo.descripcion}}</ion-select-option>
             </ion-select>
@@ -329,8 +307,8 @@
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Situación Laboral</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
+            <ion-select label="Situación Laboral" labelPlacement="floating"
+              [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
               formControlName="situacionLaboralID">
               <ion-select-option *ngFor="let situacionLaboral of situacionesLaborales"
                 value="{{situacionLaboral.id}}">{{situacionLaboral.descripcion}}</ion-select-option>
@@ -342,8 +320,7 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Lugar de trabajo</ion-label>
-            <ion-input type="text" formControlName="lugarTrabajo"></ion-input>
+            <ion-input label="Lugar de trabajo" labelPlacement="floating" formControlName="lugarTrabajo"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -375,22 +352,22 @@
               <ion-row>
                 <ion-col size="12" size-xs="6" size-sm="6" size-md="5" size-lg="5" size-xl="3">
                   <ion-item>
-                    <ion-label position="floating">Nombre completo</ion-label>
-                    <ion-input formControlName="nombreCompleto" type="text" placeholder="Carlos Magno"></ion-input>
+                    <ion-input formControlName="nombreCompleto" label="Nombre completo" labelPlacement="floating"
+                      placeholder="Carlos Magno"></ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col size="12" size-xs="6" size-sm="6" size-md="3" size-lg="3" size-xl="3">
                   <ion-item>
-                    <ion-label position="floating">cedula</ion-label>
-                    <!-- <ion-input formControlName="parentesco" type="text" placeholder="Hermano"></ion-input> -->
-                    <ion-input type="text" formControlName="cedula" placeholder="Awesome Input"></ion-input>
+                    <!-- <ion-input formControlName="parentesco" label="" labelPlacement="floating" placeholder="Hermano"></ion-input> -->
+                    <ion-input label="Cédula" labelPlacement="floating" formControlName="cedula"
+                      placeholder="Awesome Input"></ion-input>
                   </ion-item>
                 </ion-col>
 
                 <ion-col size="12" size-xs="6" size-sm="6" size-md="2" size-lg="2" size-xl="3">
                   <ion-item>
-                    <ion-label position="floating">Edad</ion-label>
-                    <ion-input formControlName="edad" type="number" placeholder="edad"></ion-input>
+                    <ion-input formControlName="edad" label="Edad" labelPlacement="floating"
+                      placeholder="edad"></ion-input>
                   </ion-item>
                 </ion-col>
                 <ion-col size="12" size-xs="6" size-sm="6" size-md="2" size-lg="2" size-xl="3" button
@@ -412,8 +389,8 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Situación vivienda</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
+            <ion-select label="Situación vivienda" labelPlacement="floating"
+              [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
               formControlName="situacionViviendaID">
               <ion-select-option *ngFor="let situacionVivienda of situacionesVivienda"
                 value="{{situacionVivienda.id}}">{{situacionVivienda.descripcion}}</ion-select-option>
@@ -422,8 +399,8 @@
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Ingreso familiar aproximado</ion-label>
-            <ion-select [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
+            <ion-select label="Ingreso familiar aproximado" labelPlacement="floating"
+              [interfaceOptions]="customActionSheetOptions" interface="action-sheet" placeholder="Seleccione"
               formControlName="ingresoAproximadoID">
               <ion-select-option *ngFor="let ingresoAproximado of ingresosAproximado"
                 value="{{ingresoAproximado.id}}">{{ingresoAproximado.descripcion}}</ion-select-option>
@@ -435,8 +412,8 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Pertenece a partido</ion-label>
-            <ion-select placeholder="Seleccione" formControlName="pertenecePartidoID">
+            <ion-select label="Pertenece a partido" labelPlacement="floating" placeholder="Seleccione"
+              formControlName="pertenecePartidoID">
               <ion-select-option *ngFor="let pertenecePartido of pertenecenPartido"
                 value="{{pertenecePartido.id}}">{{pertenecePartido.descripcion}}</ion-select-option>
             </ion-select>
@@ -444,8 +421,8 @@
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Partido al que pertenece</ion-label>
-            <ion-select placeholder="Seleccione" formControlName="partidoID">
+            <ion-select label="Partido al que pertenece" labelPlacement="floating" placeholder="Seleccione"
+              formControlName="partidoID">
               <ion-select-option *ngFor="let partidoPertenece of partidosPertenecen"
                 value="{{partidoPertenece.id}}">{{partidoPertenece.descripcion}}</ion-select-option>
             </ion-select>
@@ -456,8 +433,8 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Religión</ion-label>
-            <ion-select placeholder="Seleccione" formControlName="religionID">
+            <ion-select label="Religión" labelPlacement="floating" placeholder="Seleccione"
+              formControlName="religionID">
               <ion-select-option *ngFor="let religion of religiones"
                 value="{{religion.id}}">{{religion.descripcion}}</ion-select-option>
             </ion-select>
@@ -465,8 +442,8 @@
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Otra</ion-label>
-            <ion-input type="text" placeholder="Otra religión"></ion-input>
+            <ion-input label="Otra" labelPlacement="floating" placeholder="Otra religión"
+              formControlName="religionOtra"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -476,29 +453,14 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">WhatApp</ion-label>
-            <ion-input type="text" placeholder="whatapp"></ion-input>
+            <ion-input label="WhatApp" labelPlacement="floating" placeholder="whatapp"
+              formControlName="whatapp"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Facebook</ion-label>
-            <ion-input type="text" placeholder="facebook"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Instagram</ion-label>
-            <ion-input type="text" placeholder="instagram"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Twiter</ion-label>
-            <ion-input type="text" placeholder="twiter"></ion-input>
+            <ion-input label="Facebook" labelPlacement="floating" placeholder="facebook"
+              formControlName="facebook"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -506,29 +468,14 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Youtube</ion-label>
-            <ion-input type="text" placeholder="youtube"></ion-input>
+            <ion-input label="Instagram" labelPlacement="floating" placeholder="instagram"
+              formControlName="instagram"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Tik Tok</ion-label>
-            <ion-input type="text" placeholder="tiktok"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Teleram</ion-label>
-            <ion-input type="text" placeholder="telegram"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col size="6">
-          <ion-item>
-            <ion-label position="floating">Snapchapk</ion-label>
-            <ion-input type="text" placeholder="snapchapt"></ion-input>
+            <ion-input label="Twiter" labelPlacement="floating" placeholder="twiter"
+              formControlName="twiter"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -536,8 +483,37 @@
       <ion-row>
         <ion-col size="6">
           <ion-item>
-            <ion-label position="floating">Otra</ion-label>
-            <ion-input type="text" placeholder="otra"></ion-input>
+            <ion-input label="Youtube" labelPlacement="floating" placeholder="youtube"
+              formControlName="youtube"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-input label="Tik Tok" labelPlacement="floating" placeholder="tiktok"
+              formControlName="tiktok"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-input label="Teleram" labelPlacement="floating" placeholder="telegram"
+              formControlName="telegram"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-input label="Snapchapk" labelPlacement="floating" placeholder="snapchapt"
+              formControlName="snapchapt"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-input label="Otra" labelPlacement="floating" placeholder="otra" formControlName="otra"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>

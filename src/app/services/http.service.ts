@@ -51,9 +51,20 @@ export class HttpService implements IHttp {
       .pipe(tap((resp) => of(resp)));
   }
 
-  Put(ruta: string, body: Object): Observable<any> {
-    throw new Error('Method not implemented.');
+  /**
+   *
+   * @param body data
+   * @param rutaApi url del backend
+   * @param opcion data a enviar
+   * @returns
+   */
+  Put(endPoint: string, body: Object) {
+    const APIREST = `${this.urlServer}${endPoint}`;
+    return this.http
+      .put(APIREST, body, this.httpOptions)
+      .pipe(tap((data) => of(data)));
   }
+
   Delete(ruta: string, id: number): Observable<any> {
     throw new Error('Method not implemented.');
   }
