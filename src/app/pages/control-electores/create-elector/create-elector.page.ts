@@ -284,7 +284,7 @@ export class CreateElectorPage implements OnInit {
 
     this.form.patchValue({
       userIdCreatedAt: userData.id,
-      campananiaID: userData.idCampania,
+      campaniaID: userData.idCampania,
       action: 'final',
     });
 
