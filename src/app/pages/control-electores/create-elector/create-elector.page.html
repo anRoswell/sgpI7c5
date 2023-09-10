@@ -5,17 +5,19 @@
         <ion-back-button></ion-back-button>
       </ion-buttons>
     </ion-buttons>
-    <ion-title>Elector</ion-title>
-    <ion-buttons slot="end">
-      <ion-button slot="start" (click)="saveFormTmp()" expand="block" fill="solid" shape="round" color="secondary">
-        <ion-icon slot="start" name="information-circle"></ion-icon>
-        TMP
-      </ion-button>
-      <ion-button slot="end" (click)="saveForm()" fill="solid">
-        <ion-icon slot="start" name="save"></ion-icon>
-        Guardar
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Elector {{this.action}}</ion-title>
+    <div *ngIf {{this.action}} !="consultar">
+      <ion-buttons slot="end">
+        <ion-button slot="start" (click)="saveFormTmp()" expand="block" fill="solid" shape="round" color="secondary">
+          <ion-icon slot="start" name="information-circle"></ion-icon>
+          TMP
+        </ion-button>
+        <ion-button slot="end" (click)="saveForm()" fill="solid">
+          <ion-icon slot="start" name="save"></ion-icon>
+          Guardar
+        </ion-button>
+      </ion-buttons>
+    </div>
   </ion-toolbar>
   <ion-segment (ionChange)="segmentChanged($event)" [value]="selectedSegment" scrollable="true">
     <ion-segment-button *ngFor="let item of segmentList;let i = index" [value]="item.title"
@@ -28,6 +30,7 @@
 
 <ion-content>
   <form [formGroup]="form">
+    <fieldset disabled>
     <input type="hidden" formControlName="campananiaID" />
     <ion-grid fixed *ngIf="grids[0].value">
       <ion-row>
@@ -565,5 +568,6 @@
         </ion-fab-button>
       </ion-fab-list>
     </ion-fab> -->
+  </fieldset>
   </form>
 </ion-content>
