@@ -157,12 +157,12 @@ export class CreateElectorPage implements OnInit {
       apellidoPaterno: [null],
       apellidoMaterno: [null],
       apellidoCasado: [null],
-      celular1: [null],
-      celular2: [null],
+      celular1: [null, [Validators.minLength(10), Validators.maxLength(10)]],
+      celular2: [null, [Validators.minLength(10), Validators.maxLength(10)]],
       telefono: [null],
       correo: [null],
       sexoID: [null],
-      edad: [null],
+      edad: [null, [Validators.maxLength(2)]],
       fechaNacimiento: [null],
 
       provinciaID: [null],
@@ -287,8 +287,6 @@ export class CreateElectorPage implements OnInit {
       campaniaID: userData.idCampania,
       action: 'final',
       calle: 'asdasdasd',
-      ubicacionLat: '23.123123123',
-      ubicacionLng: '12.312312312',
     });
 
     console.log(this.form.value);
@@ -464,12 +462,14 @@ export class CreateElectorPage implements OnInit {
   /**
    * Obtiene coordendas
    */
-  goToLocate() {
-    console.log('Ubicate please');
-    const printCurrentPosition = async () => {
-      const coordinates = await Geolocation.getCurrentPosition();
-      console.log('Current position:', coordinates);
-    };
+  async goToLocate() {
+    const coordinates = await Geolocation.getCurrentPosition();
+    this.form.patchValue({
+      ubicacion: `Latitude: ${coordinates.coords.latitude} - Longitud: ${coordinates.coords.longitude}`,
+      ubicacionLat: coordinates.coords.latitude,
+      ubicacionLng: coordinates.coords.longitude,
+    });
+    console.log('Current position:', coordinates);
   }
 
   editForm(id: any) {
