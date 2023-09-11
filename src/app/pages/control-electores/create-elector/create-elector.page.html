@@ -6,18 +6,16 @@
       </ion-buttons>
     </ion-buttons>
     <ion-title>Elector {{this.action}}</ion-title>
-    <div *ngIf {{this.action}} !="consultar">
-      <ion-buttons slot="end">
-        <ion-button slot="start" (click)="saveFormTmp()" expand="block" fill="solid" shape="round" color="secondary">
-          <ion-icon slot="start" name="information-circle"></ion-icon>
-          TMP
-        </ion-button>
-        <ion-button slot="end" (click)="saveForm()" fill="solid">
-          <ion-icon slot="start" name="save"></ion-icon>
-          Guardar
-        </ion-button>
-      </ion-buttons>
-    </div>
+    <ion-buttons slot="end" *ngIf="this.action!=='consultar'">
+      <ion-button slot="start" (click)="saveFormTmp()" expand="block" fill="solid" shape="round" color="secondary">
+        <ion-icon slot="start" name="information-circle"></ion-icon>
+        TMP
+      </ion-button>
+      <ion-button slot="end" (click)="saveForm()" fill="solid">
+        <ion-icon slot="start" name="save"></ion-icon>
+        Guardar
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
   <ion-segment (ionChange)="segmentChanged($event)" [value]="selectedSegment" scrollable="true">
     <ion-segment-button *ngFor="let item of segmentList;let i = index" [value]="item.title"
@@ -30,8 +28,11 @@
 
 <ion-content>
   <form [formGroup]="form">
-    <fieldset disabled>
+    <fieldset>
       <input type="hidden" formControlName="campaniaID" />
+      <input type="hidden" formControlName="calle" value="13212312323" />
+      <input type="hidden" formControlName="ubicacionLat" value="13212312323" />
+      <input type="hidden" formControlName="ubicacionLng" value="13212312323" />
       <ion-grid fixed *ngIf="grids[0].value">
         <ion-row>
           <ion-col size="6" size-md="6" size-lg="6" size-xg="6">
@@ -111,7 +112,7 @@
         <ion-row>
           <ion-col size="6">
             <ion-item>
-              <ion-select label="Sexo" labelPlacement="fixed" placeholder="Seleccione" formControlName="sexoID">
+              <ion-select label="Sexo" labelPlacement="floating" placeholder="Seleccione" formControlName="sexoID">
                 <ion-select-option *ngFor="let sexo of sexos"
                   value="{{sexo.id}}">{{sexo.descripcion}}</ion-select-option>
               </ion-select>
@@ -459,8 +460,8 @@
         <ion-row>
           <ion-col size="6">
             <ion-item>
-              <ion-input label="WhatApp" labelPlacement="floating" placeholder="whatapp"
-                formControlName="whatapp"></ion-input>
+              <ion-input label="WhatsApp" labelPlacement="floating" placeholder="WhatsApp"
+                formControlName="whatsapp"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6">
@@ -480,8 +481,8 @@
           </ion-col>
           <ion-col size="6">
             <ion-item>
-              <ion-input label="Twiter" labelPlacement="floating" placeholder="twiter"
-                formControlName="twiter"></ion-input>
+              <ion-input label="Twitter" labelPlacement="floating" placeholder="Twitter"
+                formControlName="twitter"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>

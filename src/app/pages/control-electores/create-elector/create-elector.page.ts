@@ -172,11 +172,11 @@ export class CreateElectorPage implements OnInit {
       barriada: [null],
       sector: [null],
       edificio: [null],
-      calle: [null],
+      calle: ['calle quemada, falta pedirla en el html'],
       numCasaApto: [null],
       otrasReferencias: [null],
-      ubicacionLat: [null],
-      ubicacionLng: [null],
+      ubicacionLat: [23123123123],
+      ubicacionLng: [12312312312],
       ubicacion: [null],
       centroVotacionID: [null],
       mesaId: [null],
@@ -225,7 +225,6 @@ export class CreateElectorPage implements OnInit {
         this.action = params.action;
         this.electorId = params.id;
         console.log(this.electorId);
-        //this.getElectorById(this.electorId);
       }
 
       this.getDataSelectFormElector();
@@ -281,14 +280,13 @@ export class CreateElectorPage implements OnInit {
    */
   public async saveForm() {
     const userData: any = await this.storageService.getData('userLogin');
+    console.log(this.form.value);
 
     this.form.patchValue({
       userIdCreatedAt: userData.id,
       campaniaID: userData.idCampania,
       action: 'final',
     });
-
-    console.log(this.action);
 
     this.PutValidator();
     if (!this.form.valid) {
@@ -366,7 +364,6 @@ export class CreateElectorPage implements OnInit {
     this.PutOrClearFormValidators('snapchapt');
     this.PutOrClearFormValidators('otra');
   }
-
   private ClearValidator() {
     this.PutOrClearFormValidators('cedula', 'noRequired');
     this.PutOrClearFormValidators('primerNombre', 'noRequired');
@@ -618,6 +615,7 @@ export class CreateElectorPage implements OnInit {
         .subscribe((dataEditForm) => {
           const { data } = dataEditForm;
           this.setdataEditForm(data);
+
           if (!['new'].includes(this.action)) {
             this.getElectorById(data[19][0]);
           }
@@ -667,5 +665,12 @@ export class CreateElectorPage implements OnInit {
 
   private removeRequiredForm() {
     this.form.clearValidators();
+  }
+
+  private validate() {
+    console.log(this.action);
+    console.log(this.action !== 'consultar');
+
+    return true;
   }
 }
