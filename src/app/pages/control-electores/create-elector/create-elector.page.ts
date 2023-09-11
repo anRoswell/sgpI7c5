@@ -304,7 +304,8 @@ export class CreateElectorPage implements OnInit {
           .Put(`elector/${this.form.get('id')?.value}`, dataForm)
           .subscribe((resp: any) => {
             console.log(resp);
-            this.presentAlert(resp[0][0].msg);
+            this.form.reset();
+            this.presentAlert(resp.msg);
           });
       }
     });
