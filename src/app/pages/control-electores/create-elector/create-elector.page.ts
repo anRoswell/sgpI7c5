@@ -172,11 +172,11 @@ export class CreateElectorPage implements OnInit {
       barriada: [null],
       sector: [null],
       edificio: [null],
-      calle: ['calle quemada, falta pedirla en el html'],
+      calle: [null],
       numCasaApto: [null],
       otrasReferencias: [null],
-      ubicacionLat: [23123123123],
-      ubicacionLng: [12312312312],
+      ubicacionLat: [null],
+      ubicacionLng: [null],
       ubicacion: [null],
       centroVotacionID: [null],
       mesaId: [null],
@@ -280,14 +280,17 @@ export class CreateElectorPage implements OnInit {
    */
   public async saveForm() {
     const userData: any = await this.storageService.getData('userLogin');
-    console.log(this.form.value);
 
     this.form.patchValue({
       userIdCreatedAt: userData.id,
       campaniaID: userData.idCampania,
       action: 'final',
+      calle: 'asdasdasd',
+      ubicacionLat: '23.123123123',
+      ubicacionLng: '12.312312312',
     });
 
+    console.log(this.form.value);
     this.PutValidator();
     if (!this.form.valid) {
       this.form.markAllAsTouched(); //Muestra en rojo los inputs obligatorios
@@ -457,6 +460,9 @@ export class CreateElectorPage implements OnInit {
     return f?.hasError(validationType) && (f.dirty || f.touched);
   }
 
+  /**
+   * Obtiene coordendas
+   */
   goToLocate() {}
 
   editForm(id: any) {
