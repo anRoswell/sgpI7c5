@@ -13,6 +13,7 @@ import { IHttp } from 'src/app/interfaces/IHttp';
 import { ILogger } from 'src/app/interfaces/ILogger';
 import { IStorage } from 'src/app/interfaces/IStorage';
 import { CheckconnectionService } from 'src/app/services/checkconnection.service';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-create-elector',
@@ -460,7 +461,13 @@ export class CreateElectorPage implements OnInit {
     return f?.hasError(validationType) && (f.dirty || f.touched);
   }
 
-  goToLocate() {}
+  goToLocate() {
+    console.log('Ubicate please');
+    const printCurrentPosition = async () => {
+      const coordinates = await Geolocation.getCurrentPosition();
+      console.log('Current position:', coordinates);
+    };
+  }
 
   editForm(id: any) {
     this.checkconnectionService.checkConection().then(async (_) => {

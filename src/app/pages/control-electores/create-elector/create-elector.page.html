@@ -6,7 +6,7 @@
       </ion-buttons>
     </ion-buttons>
     <ion-title>Elector {{this.action}}</ion-title>
-    <div *ngIf {{this.action}} !="consultar">
+    <div *ngIf {{this.action}} != "consultar">
       <ion-buttons slot="end">
         <ion-button slot="start" (click)="saveFormTmp()" expand="block" fill="solid" shape="round" color="secondary">
           <ion-icon slot="start" name="information-circle"></ion-icon>
