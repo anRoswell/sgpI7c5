@@ -279,7 +279,8 @@
         <ion-row>
           <ion-col size="6">
             <ion-item>
-              <ion-input label="Cédula de pareja" labelPlacement="floating" formControlName="cedulaPareja"></ion-input>
+              <ion-input label="Cédula de pareja" labelPlacement="floating" formControlName="cedulaPareja"
+                errorText="Cédula incorrecta"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6">
@@ -292,7 +293,8 @@
         <ion-row>
           <ion-col size="6">
             <ion-item>
-              <ion-input label="Celular amigo" labelPlacement="floating" formControlName="celularAmigo"></ion-input>
+              <ion-input label="Celular amigo" labelPlacement="floating" formControlName="celularAmigo" [counter]="true"
+                maxlength="10" errorText="Celular invalido"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6">
@@ -372,7 +374,7 @@
                     <ion-item>
                       <!-- <ion-input formControlName="parentesco" label="" labelPlacement="floating" placeholder="Hermano"></ion-input> -->
                       <ion-input label="Cédula" labelPlacement="floating" formControlName="cedula"
-                        placeholder="Awesome Input"></ion-input>
+                        placeholder="Cédula"></ion-input>
                     </ion-item>
                   </ion-col>
 

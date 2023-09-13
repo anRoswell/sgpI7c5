@@ -229,6 +229,21 @@ export class ControlElectoresPage implements OnInit {
 
   lockElector(data: any) {}
 
+  goToHistory(elector: any) {
+    const parametros = {
+      action: 'list',
+      ...elector,
+    };
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        ...parametros,
+      },
+      fragment: 'anchor',
+    };
+    this.router.navigate(['seguimiento-elector'], navigationExtras);
+  }
+
   editElector(data: any, action: string) {
     const parametros = {
       action,

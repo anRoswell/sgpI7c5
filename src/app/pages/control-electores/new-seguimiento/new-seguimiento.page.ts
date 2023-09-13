@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -14,6 +14,7 @@ import { SeguimientoElectorPage } from '../seguimiento-elector/seguimiento-elect
   styleUrls: ['./new-seguimiento.page.scss'],
 })
 export class NewSeguimientoPage implements OnInit {
+  @Input() model_title?: string;
   public userLogin: any;
   public form: FormGroup;
   public showBtnHistory = false;
@@ -101,17 +102,18 @@ export class NewSeguimientoPage implements OnInit {
     this.form = this.fb.group({
       userIdCreatedAt: [''],
       campananiaID: ['', [Validators.required]],
-
-      nombre: ['', [Validators.required]],
-      celular1: ['', [Validators.required]],
-      celular2: ['', [Validators.required]],
-      correo: ['', [Validators.required, Validators.email]],
-      tipoSeguimientoID: ['', [Validators.required]],
+      idElector: ['', [Validators.required]],
+      tipoSeguimientoId: ['', [Validators.required]],
       observacion: ['', [Validators.required]],
     });
     this.userLogin = this.storageService.getData('userLogin');
     this.route.queryParams.subscribe(async (params: any) => {
       console.log(params);
+      console.log(this.userLogin);
+      this.form.patchValue({
+        idElector: params.id,
+        userIdCreatedAt: this.userLogin.id,
+      });
       this.action = params.action;
       if (params.action === 'edit') {
         this.showBtnHistory = true;
@@ -143,7 +145,7 @@ export class NewSeguimientoPage implements OnInit {
     }
 
     const dataForm = this.form.value;
-    this.http.Post(dataForm, 'asignarPersonal').subscribe((resp) => {
+    this.http.Post(dataForm, 'seguimiento').subscribe((resp) => {
       console.log(resp);
       this.presentAlert();
     });

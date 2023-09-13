@@ -1,18 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button slot="start" (click)="closeModal()">
-      <ion-icon slot="icon-only" name="close"></ion-icon>
-    </ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button text="Regresar" icon="caret-back"></ion-back-button>
+    </ion-buttons>
     <ion-title>Historico seguimiento</ion-title>
+    <ion-button slot="end" (click)="newSeguimiento()">
+      <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let hs of historicosSeguimiento">
-    <ion-card-header>
-      <ion-card-subtitle>Awesome Subtitle</ion-card-subtitle>
-      <ion-card-title>Awesome Title</ion-card-title>
-    </ion-card-header>
-    <ion-card-content> {{hs.observacion}} </ion-card-content>
-  </ion-card>
+  <ng-template #electorNoEncontrado>
+    <app-lista-vacia></app-lista-vacia>
+  </ng-template>
+
+  <ng-template ngFor let-hs let-i="index" [ngForOf]="historicosSeguimiento"
+    *ngIf="historicosSeguimientoCantidad !== 0 else electorNoEncontrado">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>{{i}}</ion-card-subtitle>
+        <ion-card-title>Awesome Title</ion-card-title>
+      </ion-card-header>
+      <ion-card-content> {{hs.observacion}} </ion-card-content>
+    </ion-card>
+  </ng-template>
+
+
 </ion-content>

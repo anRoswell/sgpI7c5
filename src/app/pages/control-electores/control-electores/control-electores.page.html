@@ -19,20 +19,28 @@
 
 <ion-content>
 
-  <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350" *ngIf="grids[0].value">
+  <ng-template #electorNoEncontrado>
+    <app-lista-vacia></app-lista-vacia>
+  </ng-template>
+
+  <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350"
+    *ngIf="grids[0].value else electorNoEncontrado">
     <ion-list>
-      <ion-item *cdkVirtualFor="let tmp of electores;let i = index">
+      <ion-item *cdkVirtualFor="let elector of electores;let i = index">
         <ion-label slot="start">
           <ion-text color="primary">
-            <h2>{{i + 1}}. Nro Doc: {{tmp.cedula}}</h2>
-            <p>Elector: {{tmp.completeName}}</p>
+            <h2>{{i + 1}}. Nro Doc: {{elector.cedula}}</h2>
+            <p>Elector: {{elector.completeName}}</p>
           </ion-text>
         </ion-label>
         <div slot="end">
-          <ion-button (click)="lockElector(tmp)" fill="clear">
+          <ion-button (click)="lockElector(elector)" fill="clear">
             <ion-icon slot="end" name="lock-closed"></ion-icon>
           </ion-button>
-          <ion-button (click)="consultarElector(tmp)" fill="clear">
+          <ion-button (click)="goToHistory(elector)" fill="clear">
+            <ion-icon name="calendar-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="consultarElector(elector)" fill="clear">
             <ion-icon slot="end" name="search"></ion-icon>
           </ion-button>
         </div>
@@ -41,7 +49,8 @@
     </ion-list>
   </cdk-virtual-scroll-viewport>
 
-  <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350" *ngIf="grids[1].value">
+  <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350"
+    *ngIf="grids[1].value else electorNoEncontrado">
     <ion-list>
       <ion-item *cdkVirtualFor="let tmp of electoresTmp; let i = index">
         <ion-label>
@@ -60,7 +69,6 @@
       </ion-item>
     </ion-list>
   </cdk-virtual-scroll-viewport>
-
 
   <!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
   <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" (click)="newElector()">

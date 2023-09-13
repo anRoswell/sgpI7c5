@@ -219,20 +219,14 @@ export class CreateElectorPage implements OnInit {
 
   ionViewDidEnter() {
     this.route.queryParams.subscribe(async (params: any) => {
-      console.log(params);
-
       this.electorId = 0;
       if (!['new'].includes(params.action)) {
         this.action = params.action;
         this.electorId = params.id;
-        console.log(this.electorId);
       }
 
       this.getDataSelectFormElector();
     });
-    console.log(
-      `Por aqui pasa cada q entra al tab ServiciosPage ionViewDidEnter`
-    );
   }
 
   //#region FORM
