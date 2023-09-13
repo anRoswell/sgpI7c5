@@ -106,13 +106,17 @@ export class NewSeguimientoPage implements OnInit {
       tipoSeguimientoId: ['', [Validators.required]],
       observacion: ['', [Validators.required]],
     });
-    this.userLogin = this.storageService.getData('userLogin');
+
     this.route.queryParams.subscribe(async (params: any) => {
-      console.log(params);
-      console.log(this.userLogin);
-      this.form.patchValue({
-        idElector: params.id,
-        userIdCreatedAt: this.userLogin.id,
+      this.storageService.getData('userLogin')?.then((userLogin) => {
+        this.userLogin = userLogin;
+        console.log(params);
+        console.log(this.userLogin);
+        this.form.patchValue({
+          idElector: params.id,
+          userIdCreatedAt: this.userLogin.id,
+          campananiaID: this.userLogin.idCampania,
+        });
       });
       this.action = params.action;
       if (params.action === 'edit') {
@@ -134,18 +138,15 @@ export class NewSeguimientoPage implements OnInit {
    * Guardamos en base de datos
    */
   public saveForm() {
-    this.form.patchValue({
-      userIdCreatedAt: this.userLogin.id,
-      idCampania: this.userLogin.idCampania,
-    });
-
     if (!this.form.valid) {
       this.form.markAllAsTouched();
+      console.log(this.form.value);
+      alert('Formulario invalido, favor validar');
       return;
     }
 
     const dataForm = this.form.value;
-    this.http.Post(dataForm, 'seguimiento').subscribe((resp) => {
+    this.http.Post('seguimiento', dataForm).subscribe((resp) => {
       console.log(resp);
       this.presentAlert();
     });
@@ -185,6 +186,7 @@ export class NewSeguimientoPage implements OnInit {
     });
 
     modal.onDidDismiss().then((result: any) => {
+      console.log(result);
       if (result.data !== undefined) {
         if (result.data.close !== 'yes') {
           console.log(`Se cerro el modal`);
@@ -192,6 +194,12 @@ export class NewSeguimientoPage implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  closeModal() {
+    this.modalController.dismiss({
+      close: 'yes',
+    });
   }
 
   goToHistoricoSeguimientoLocal() {

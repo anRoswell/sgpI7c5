@@ -24,8 +24,8 @@
           <ion-col size="12">
             <ion-item>
               <ion-select label="Tipo de seguimiento" labelPlacement="floating" formControlName="tipoSeguimientoId"
-                value="peperoni" placeholder="Seleccione">
-                <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                value="1" placeholder="Seleccione">
+                <ion-select-option value="1">Peperoni</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
@@ -43,8 +43,8 @@
 
         <ion-row>
           <ion-col size="6">
-            <ion-button (click)="saveForm()" expand="block" fill="clear" shape="solid" color="secondary">
-              Descartar
+            <ion-button (click)="closeModal()" expand="block" fill="clear" shape="solid" color="secondary">
+              Cerrar
             </ion-button>
           </ion-col>
           <ion-col size="6">

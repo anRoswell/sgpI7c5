@@ -19,8 +19,8 @@
     *ngIf="historicosSeguimientoCantidad !== 0 else electorNoEncontrado">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>{{i}}</ion-card-subtitle>
-        <ion-card-title>Awesome Title</ion-card-title>
+        <ion-card-title>{{hs.tipoSeguimientoId}}</ion-card-title>
+        <ion-card-subtitle>Id: {{i}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content> {{hs.observacion}} </ion-card-content>
     </ion-card>
